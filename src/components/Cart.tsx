@@ -22,8 +22,7 @@ import {
 export default function Cart() {
   const dispatch = useAppDispatch();
 
-  const { products } = useAppSelector((state) => state.cart);
-  const total = 0;
+  const { products, total } = useAppSelector((state) => state.cart);
 
   return (
     <Sheet>
