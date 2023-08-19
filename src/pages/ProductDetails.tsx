@@ -1,13 +1,16 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
-import { useGetProductByIdQuery } from '@/redux/api/apiSlice';
+import { useGetProductByIdQuery } from '@/redux/features/product/productApiSlice';
 import { IProduct } from '@/types/globalTypes';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
 
-  const { data } = useGetProductByIdQuery(id);
+  const { data } = useGetProductByIdQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 5000,
+  });
 
   const product: IProduct = data?.data;
 
