@@ -1,10 +1,24 @@
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/technet-logo-white.png';
 import { LoginForm } from '@/components/LoginForm';
+import { useAppSelector } from '@/redux/hooks';
+import { useEffect } from 'react';
 
 export default function Login() {
+  const {
+    user: { email },
+    isLoading,
+  } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (email && !isLoading) {
+      navigate('/');
+    }
+  }, [email, isLoading, navigate]);
+
   return (
     <>
       <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
