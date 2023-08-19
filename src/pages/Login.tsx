@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/technet-logo-white.png';
 import { LoginForm } from '@/components/LoginForm';
 import { useAppSelector } from '@/redux/hooks';
@@ -12,12 +12,15 @@ export default function Login() {
     isLoading,
   } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || '/';
 
   useEffect(() => {
     if (email && !isLoading) {
-      navigate('/');
+      navigate(from, { replace: true });
     }
-  }, [email, isLoading, navigate]);
+  }, [email, isLoading, navigate, from]);
 
   return (
     <>
