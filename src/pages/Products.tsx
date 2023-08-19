@@ -2,7 +2,6 @@ import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
 import { useGetProductQuery } from '@/redux/features/product/productApiSlice';
 import {
   setPriceRange,
@@ -10,7 +9,6 @@ import {
 } from '@/redux/features/product/productSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 
 export default function Products() {
   const { data } = useGetProductQuery(undefined);
