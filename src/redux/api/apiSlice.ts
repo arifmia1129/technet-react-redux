@@ -4,12 +4,14 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api-tech-net.vercel.app/api/v1/',
   }),
+  tagTypes: ['comment'],
   endpoints: (builder) => ({
     getProduct: builder.query({
       query: () => 'product',
     }),
     getProductById: builder.query({
       query: (id) => `product/${id}`,
+      providesTags: ['comment'],
     }),
     addComment: builder.mutation({
       query: ({ id, data }) => ({
@@ -17,6 +19,7 @@ export const api = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['comment'],
     }),
   }),
 });

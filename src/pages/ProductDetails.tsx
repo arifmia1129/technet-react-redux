@@ -28,7 +28,7 @@ export default function ProductDetails() {
           <Button>Add to cart</Button>
         </div>
       </div>
-      <ProductReview id={id as string} />
+      <ProductReview id={id as string} comments={data?.data?.comments} />
     </>
   );
 }
